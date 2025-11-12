@@ -1,4 +1,4 @@
-# ✈️ Aviation Accident NLP Analysis & Power BI Dashboard  
+# Aviation Accident NLP Analysis & Power BI Dashboard  
 *A Data Storytelling Project on Human Factors in Aviation Safety*
 
 ![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)
@@ -7,19 +7,19 @@
 
 ---
 
-## 📖 Overview
+## Overview
 This project analyzes **NTSB aviation accident reports** using **Natural Language Processing (NLP)** and **Power BI** to uncover recurring patterns, themes, and sentiments within accident narratives.  
 It was developed as part of a **Data Visualization & Communication** class project focused on *data storytelling for impact*.
 
 **Dataset:**  
-👉 [Aviation Accident NTSB Dataset – Kaggle (Yasser Eleraky)](https://www.kaggle.com/datasets/yassereleraky/aviation-accident-ntsb/data?select=NTSB_database.csv)
+[Aviation Accident NTSB Dataset – Kaggle (Yasser Eleraky)](https://www.kaggle.com/datasets/yassereleraky/aviation-accident-ntsb/data?select=NTSB_database.csv)
 
 **Objective:**  
 > Explore structured and unstructured aviation safety data to identify what factors—human, environmental, or technical—drive recurring accident trends, and communicate findings through a Power BI dashboard.
 
 ---
 
-## 🧩 Repository Structure
+## Repository Structure
 ```
 aviation-nlp-powerbi/
 ├── data/
@@ -40,22 +40,22 @@ aviation-nlp-powerbi/
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
-### 1️⃣ Clone the Repository
+### 1) Clone the Repository
 ```bash
 git clone https://github.com/<your-username>/aviation-nlp-powerbi.git
 cd aviation-nlp-powerbi
 ```
 
-### 2️⃣ Create & Activate a Virtual Environment
+### 2) Create & Activate a Virtual Environment
 ```bash
 python -m venv venv
 source venv/bin/activate        # (Mac/Linux)
 venv\Scripts\activate           # (Windows)
 ```
 
-### 3️⃣ Install Dependencies
+### 3) Install Dependencies
 ```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
@@ -65,7 +65,7 @@ python -m spacy download en_core_web_sm
 
 ---
 
-## 🧹 Data Cleaning Workflow
+## Data Cleaning Workflow
 
 **Notebook:** `notebooks/01_cleaning.ipynb`  
 - Drop missing narratives and irrelevant columns  
@@ -81,25 +81,25 @@ df["year"] = df["event_date"].dt.year
 
 ---
 
-## 🧠 NLP Processing
+## NLP Processing
 
 **Notebook:** `notebooks/02_nlp_processing.ipynb`
 
-### 🔹 Sentiment Analysis
+### Sentiment Analysis
 Using **TextBlob**:
 ```python
 from textblob import TextBlob
 df["sentiment_polarity"] = df["narrative"].apply(lambda x: TextBlob(x).sentiment.polarity)
 ```
 
-### 🔹 Keyword Extraction (TF-IDF)
+### Keyword Extraction (TF-IDF)
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(max_df=0.8, min_df=10, stop_words="english")
 tfidf_matrix = vectorizer.fit_transform(df["narrative_clean"])
 ```
 
-### 🔹 Topic Modeling (Optional)
+### Topic Modeling (Optional)
 Using **BERTopic**:
 ```python
 from bertopic import BERTopic
@@ -108,18 +108,18 @@ topics, probs = topic_model.fit_transform(df["narrative_clean"])
 df["topic"] = topics
 ```
 
-### 🔹 Export for Power BI
+### Export for Power BI
 ```python
 df.to_csv("data/enriched_ntsb_nlp.csv", index=False)
 ```
 
 ---
 
-## 📊 Power BI Dashboard
+## Power BI Dashboard
 
 **File:** `powerbi/Aviation_Dashboard.pbix`
 
-### 🔸 Key Visuals
+### Key Visuals
 | Section | Visual | Fields |
 |----------|--------|--------|
 | Overview KPIs | Card visuals | # Accidents, Fatal %, Avg Sentiment |
@@ -130,14 +130,14 @@ df.to_csv("data/enriched_ntsb_nlp.csv", index=False)
 | Word Cloud | Custom Visual | Keyword frequency |
 | Topics | Table or Bar | BERTopic results |
 
-### 🔸 Interactivity
+### Interactivity
 - **Filters:** Year, Aircraft Type, Weather  
 - **Tooltips:** Narrative excerpts on hover  
 - **Drill-throughs:** View full accident report text  
 
 ---
 
-## 🧾 Executive Summary
+## Executive Summary
 **Title:** *Human Factors in Aviation Accidents: Insights from NTSB Narratives*  
 - Accident counts have **declined steadily** over decades.  
 - **Human error** and **weather conditions** remain dominant narrative themes.  
@@ -146,14 +146,14 @@ df.to_csv("data/enriched_ntsb_nlp.csv", index=False)
 
 ---
 
-## 📚 References
+## References
 - Kaggle Dataset: [Yasser Eleraky – Aviation Accident NTSB](https://www.kaggle.com/datasets/yassereleraky/aviation-accident-ntsb/data)  
 - Medium Inspiration: [Power BI NLP Magic by A. Kapoor](https://medium.com/@a.kapoor1391/power-bi-nlp-magic-2c73276e53ef)  
 - NTSB: [Aviation Accident Database & Synopses](https://www.ntsb.gov/_layouts/ntsb.aviation/Query.aspx)
 
 ---
 
-## 🧠 Future Enhancements
+## Future Enhancements
 - Integrate **transformer-based sentiment models** (BERT/RoBERTa)  
 - Add **real-time FAA incident feeds** for dynamic updates  
 - Deploy **interactive dashboard to Power BI Service**
