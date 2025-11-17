@@ -9,3 +9,5 @@ spacy==3.8.9
 textblob==0.19.0
 scikit-learn==1.7.2
 bertopic==0.17.3
+pyLDAvis==3.4.1
+gensim==4.4.0
