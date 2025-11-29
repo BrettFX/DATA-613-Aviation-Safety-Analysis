@@ -1,0 +1,20 @@
+# Additional requirements for 07_human_factors_analysis.ipynb
+# Install these in addition to base requirements.txt
+
+# Deep Learning & NLP
+torch>=2.0.0
+transformers>=4.35.0
+
+# Visualization (additional)
+plotly>=5.18.0
+kaleido>=0.2.1  # For Plotly image export
+ipywidgets>=8.1.0
+
+# Scientific computing (if not already installed)
+scipy>=1.11.0
+
+# Note: The following should already be installed from base requirements:
+# pandas, numpy, matplotlib, seaborn, scikit-learn
+
+# Installation command:
+# pip install torch transformers plotly kaleido ipywidgets scipy
